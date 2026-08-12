@@ -1,0 +1,28 @@
+{
+  "name": "Facebook Clean View",
+  "description": "Removes login walls and clutter from Facebook for TV browsing",
+  "version": 1,
+  "enabled": true,
+  "trigger": {
+    "type": "domain",
+    "value": "facebook.com",
+    "event": "on_page_stop"
+  },
+  "settings": { "timeout_ms": 15000 },
+  "actions": [
+    {
+      "type": "wait",
+      "params": { "ms": 2000 }
+    },
+    {
+      "type": "inject_css",
+      "params": { "css": "[data-testid='cookie-policy-manage-dialog'], [role='dialog'][aria-label*='log in'], ._5hn6, [class*='login'], #login_popup_cta_form, [data-testid='royal_login_form'] { display: none !important; } body, html { overflow: auto !important; position: static !important; filter: none !important; } .userContentWrapper, [role='article'] { font-size: 18px !important; line-height: 1.7 !important; } img { border-radius: 8px !important; }" }
+    },
+    {
+      "type": "inject_js",
+      "params": {
+        "code": "document.querySelectorAll('[role=\"dialog\"]').forEach(function(d) { if (d.textContent.includes('Log') || d.textContent.includes('Sign') || d.textContent.includes('Create')) d.remove(); }); document.body.style.overflow = 'auto'; document.body.style.position = 'static'; return 'done';"
+      }
+    }
+  ]
+}

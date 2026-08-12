@@ -1,0 +1,17 @@
+{
+  "name": "Duolingo TV Mode",
+  "description": "Larger text and buttons on Duolingo for TV-based language learning",
+  "version": 1,
+  "enabled": true,
+  "trigger": {
+    "type": "domain",
+    "value": "duolingo.com",
+    "event": "on_page_stop"
+  },
+  "actions": [
+    {
+      "type": "inject_css",
+      "params": { "css": "[class*='promotional'], [class*='premium'], [class*='promo-banner'] { display: none !important; } [data-test='challenge-translate-input'] { font-size: 22px !important; } [data-test='challenge-judge-text'] { font-size: 22px !important; line-height: 1.6 !important; } button[data-test] { font-size: 18px !important; padding: 14px 24px !important; } h1 { font-size: 28px !important; } .rwHAM { font-size: 20px !important; }" }
+    }
+  ]
+}

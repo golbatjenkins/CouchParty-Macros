@@ -1,0 +1,17 @@
+{
+  "name": "eBay TV Clean View",
+  "description": "Clean eBay listings with larger text and reduced clutter for TV browsing",
+  "version": 1,
+  "enabled": true,
+  "trigger": {
+    "type": "domain",
+    "value": "ebay.com",
+    "event": "on_page_stop"
+  },
+  "actions": [
+    {
+      "type": "inject_css",
+      "params": { "css": ".ad, [class*='merch'], [class*='sponsored'], .gh-eb-Geo, [class*='ux-seller-section__banner'] { display: none !important; } .x-item-title { font-size: 28px !important; font-weight: 700 !important; } .x-price-primary span { font-size: 36px !important; font-weight: 900 !important; color: #34d399 !important; } .ux-textspans { font-size: 16px !important; line-height: 1.7 !important; } .vim .d-item-description p { font-size: 18px !important; line-height: 1.7 !important; } img.s-item__image-img { border-radius: 8px !important; }" }
+    }
+  ]
+}

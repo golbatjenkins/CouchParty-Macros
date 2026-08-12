@@ -1,0 +1,17 @@
+{
+  "name": "CBS Sports TV Reader",
+  "description": "Clean sports coverage on CBS Sports with dark mode for TV viewing",
+  "version": 1,
+  "enabled": true,
+  "trigger": {
+    "type": "domain",
+    "value": "cbssports.com",
+    "event": "on_page_stop"
+  },
+  "actions": [
+    {
+      "type": "inject_css",
+      "params": { "css": "body { background: #0d1117 !important; color: #c9d1d9 !important; } .ad, [class*='ad-'], .sidebar, .outbrain, [class*='newsletter'], [class*='promo-bar'] { display: none !important; } .article-body p { font-size: 22px !important; line-height: 1.8 !important; color: #c9d1d9 !important; } h1 { font-size: 34px !important; color: #58a6ff !important; line-height: 1.3 !important; } .article-body { max-width: 900px !important; margin: 0 auto !important; padding: 20px 40px !important; } table td, table th { font-size: 16px !important; padding: 8px 12px !important; }" }
+    }
+  ]
+}

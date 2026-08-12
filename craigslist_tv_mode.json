@@ -1,0 +1,17 @@
+{
+  "name": "Craigslist TV Mode",
+  "description": "Makes Craigslist readable on TV with larger text and dark mode",
+  "version": 1,
+  "enabled": true,
+  "trigger": {
+    "type": "url_contains",
+    "value": "craigslist.org",
+    "event": "on_page_stop"
+  },
+  "actions": [
+    {
+      "type": "inject_css",
+      "params": { "css": "body { background: #0d1117 !important; color: #c9d1d9 !important; font-size: 18px !important; } a { color: #58a6ff !important; font-size: 19px !important; } .result-row { padding: 12px 8px !important; border-bottom: 1px solid #30363d !important; } .result-title { font-size: 20px !important; } .result-price { font-size: 22px !important; color: #3fb950 !important; font-weight: bold !important; } .result-hood, .result-date { font-size: 16px !important; color: #8b949e !important; } #postingbody { font-size: 20px !important; line-height: 1.7 !important; } .postingtitletext { font-size: 28px !important; } .price { font-size: 32px !important; color: #3fb950 !important; } .attrgroup span { font-size: 18px !important; } header, #topbar { background: #161b22 !important; } .gallery img, .swipe img { max-height: 70vh !important; }" }
+    }
+  ]
+}

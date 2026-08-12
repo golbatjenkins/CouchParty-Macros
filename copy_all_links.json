@@ -1,0 +1,41 @@
+{
+  "name": "Copy All Page Links",
+  "description": "Extracts all links from the current page and copies them to clipboard - useful for batch processing",
+  "version": 1,
+  "enabled": true,
+  "trigger": {
+    "type": "url_regex",
+    "value": "^https?://",
+    "event": "manual"
+  },
+  "settings": { "timeout_ms": 10000 },
+  "actions": [
+    {
+      "type": "extract_all",
+      "params": { "selector": "a[href]", "attribute": "href" },
+      "store_result": "links"
+    },
+    {
+      "type": "json_array_length",
+      "params": { "input": "${links}" },
+      "store_result": "count"
+    },
+    {
+      "type": "string_replace",
+      "params": {
+        "input": "${links}",
+        "search": "\",\"",
+        "replace": "\"\n\""
+      },
+      "store_result": "links_formatted"
+    },
+    {
+      "type": "clipboard_copy",
+      "params": { "text": "${links_formatted}" }
+    },
+    {
+      "type": "toast",
+      "params": { "message": "${count} links copied to clipboard" }
+    }
+  ]
+}
