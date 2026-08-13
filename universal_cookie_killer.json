@@ -1,0 +1,34 @@
+{
+  "name": "Universal Cookie Banner Killer",
+  "description": "Auto-dismisses GDPR/cookie consent banners across thousands of sites using common CMP frameworks",
+  "version": 1,
+  "enabled": true,
+  "trigger": {
+    "type": "url_regex",
+    "value": "^https?://",
+    "event": "on_page_stop"
+  },
+  "settings": { "timeout_ms": 10000 },
+  "actions": [
+    {
+      "type": "inject_js",
+      "params": {
+        "code": "var btns = document.querySelectorAll('[id*=\"cookie\"] button, [class*=\"cookie\"] button, [id*=\"consent\"] button, [class*=\"consent\"] button, [id*=\"gdpr\"] button, [class*=\"gdpr\"] button, [class*=\"cc-btn\"], .cc-accept, .cc-dismiss, #onetrust-accept-btn-handler, .onetrust-accept-btn-handler, #CybotCookiebotDialogBodyLevelButtonLevelOptinAllowAll, #CybotCookiebotDialogBodyButtonAccept, .cmpboxbtn.cmpboxbtnyes, #didomi-notice-agree-button, .qc-cmp2-summary-buttons button:first-child, [data-testid=\"cookie-policy-manage-dialog-btn-accept\"], .js-accept-cookies, .accept-cookies, [aria-label*=\"Accept\"][aria-label*=\"cookie\"], [aria-label*=\"accept\"][aria-label*=\"cookie\"], button[data-cookiebanner=\"accept_button\"]'); for (var b of btns) { if (b.offsetParent !== null) { b.click(); break; } } return btns.length.toString();",
+        "return_result": true
+      },
+      "store_result": "clicked"
+    },
+    {
+      "type": "wait",
+      "params": { "ms": 500 }
+    },
+    {
+      "type": "hide_elements",
+      "params": { "selector": "[id*='cookie-banner'], [class*='cookie-banner'], [id*='cookie-consent'], [class*='cookie-consent'], [id*='cookieConsent'], [class*='CookieConsent'], .cc-window, .cc-banner, #onetrust-banner-sdk, #onetrust-consent-sdk, #CybotCookiebotDialog, .cmpbox, #didomi-host, .qc-cmp2-container, [class*='gdpr'], [id*='gdpr'], .cookie-notice, #cookie-notice, .cookie-bar, #cookie-bar" }
+    },
+    {
+      "type": "inject_css",
+      "params": { "css": "body.cookie-modal-open, body.modal-open, body.no-scroll { overflow: auto !important; position: static !important; } .cc-overlay, [class*='cookie-overlay'], [class*='consent-overlay'] { display: none !important; }" }
+    }
+  ]
+}

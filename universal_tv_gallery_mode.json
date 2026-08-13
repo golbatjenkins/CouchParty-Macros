@@ -1,0 +1,19 @@
+{
+  "name": "Universal TV Image Gallery Mode",
+  "description": "Collects all page images into a TV-friendly fullscreen gallery slideshow",
+  "version": 1,
+  "enabled": false,
+  "trigger": {
+    "type": "url_regex",
+    "value": "^https?://",
+    "event": "on_page_stop"
+  },
+  "actions": [
+    {
+      "type": "inject_js",
+      "params": {
+        "code": "var images = []; document.querySelectorAll('img').forEach(function(img) { if (img.naturalWidth > 200 && img.naturalHeight > 150) images.push(img.src); }); if (images.length < 2) { return 'not-enough-images'; } var gallery = document.createElement('div'); gallery.id = 'tv-gallery'; gallery.style.cssText = 'display:none;position:fixed;top:0;left:0;width:100vw;height:100vh;background:#000;z-index:999999;justify-content:center;align-items:center;flex-direction:column;'; var img = document.createElement('img'); img.style.cssText = 'max-width:90vw;max-height:80vh;object-fit:contain;border-radius:8px;'; var counter = document.createElement('div'); counter.style.cssText = 'color:#8b949e;font-size:16px;margin-top:12px;font-family:sans-serif;'; var idx = 0; function show() { img.src = images[idx]; counter.textContent = (idx+1) + ' / ' + images.length; } gallery.appendChild(img); gallery.appendChild(counter); var controls = document.createElement('div'); controls.style.cssText = 'position:absolute;bottom:30px;display:flex;gap:16px;'; controls.innerHTML = '<button style=\"padding:10px 20px;border-radius:8px;background:#30363d;color:#fff;border:none;font-size:16px;cursor:pointer\" id=\"tv-gal-prev\">Prev</button><button style=\"padding:10px 20px;border-radius:8px;background:#30363d;color:#fff;border:none;font-size:16px;cursor:pointer\" id=\"tv-gal-close\">Close</button><button style=\"padding:10px 20px;border-radius:8px;background:#30363d;color:#fff;border:none;font-size:16px;cursor:pointer\" id=\"tv-gal-next\">Next</button>'; gallery.appendChild(controls); document.body.appendChild(gallery); document.getElementById('tv-gal-prev').addEventListener('click', function() { idx = (idx - 1 + images.length) % images.length; show(); }); document.getElementById('tv-gal-next').addEventListener('click', function() { idx = (idx + 1) % images.length; show(); }); document.getElementById('tv-gal-close').addEventListener('click', function() { gallery.style.display = 'none'; }); var trigger = document.createElement('button'); trigger.textContent = 'Gallery (' + images.length + ')'; trigger.style.cssText = 'position:fixed;bottom:16px;right:16px;padding:8px 16px;border-radius:8px;background:rgba(88,166,255,0.9);color:#fff;border:none;font-size:14px;cursor:pointer;z-index:99997;box-shadow:0 2px 8px rgba(0,0,0,0.3);'; trigger.addEventListener('click', function() { gallery.style.display = 'flex'; show(); }); document.body.appendChild(trigger); return 'gallery-ready-' + images.length + '-images';"
+      }
+    }
+  ]
+}

@@ -1,0 +1,36 @@
+{
+  "name": "YouTube TV Enhancer",
+  "description": "Auto-enables theater mode, hides sidebar/comments/header for a clean TV viewing experience",
+  "version": 1,
+  "enabled": true,
+  "trigger": {
+    "type": "url_contains",
+    "value": "youtube.com/watch",
+    "event": "on_page_stop"
+  },
+  "settings": { "timeout_ms": 15000 },
+  "actions": [
+    {
+      "type": "wait",
+      "params": { "ms": 2000 }
+    },
+    {
+      "type": "inject_css",
+      "params": { "css": "#masthead-container, #masthead, ytd-masthead { display: none !important; } #secondary, #related, #comments, #meta, ytd-comments, #below { display: none !important; } #primary { max-width: 100% !important; } #player-theater-container, #full-bleed-container { max-height: 100vh !important; } #page-manager { margin-top: 0 !important; padding-top: 0 !important; } ytd-watch-flexy[theater] #player-theater-container { max-height: 100vh !important; min-height: 100vh !important; } #movie_player { max-height: 100vh !important; } .ytp-chrome-top { display: none !important; }" }
+    },
+    {
+      "type": "inject_js",
+      "params": {
+        "code": "var btn = document.querySelector('.ytp-size-button, button[data-tooltip-target-id=\"ytp-size-button\"]'); if (btn && !document.querySelector('ytd-watch-flexy[theater]')) btn.click(); return 'theater';"
+      }
+    },
+    {
+      "type": "inject_js",
+      "params": {
+        "code": "var ad = document.querySelector('.ytp-ad-skip-button, .ytp-ad-skip-button-modern, .ytp-skip-ad-button'); if (ad) ad.click(); return ad ? 'skipped' : 'no-ad';",
+        "return_result": true
+      },
+      "store_result": "ad_status"
+    }
+  ]
+}

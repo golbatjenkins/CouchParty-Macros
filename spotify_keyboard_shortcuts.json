@@ -1,0 +1,19 @@
+{
+  "name": "Spotify Keyboard Shortcut Overlay",
+  "description": "Adds an on-screen overlay showing Spotify keyboard shortcuts for TV remote use",
+  "version": 1,
+  "enabled": true,
+  "trigger": {
+    "type": "domain",
+    "value": "open.spotify.com",
+    "event": "on_page_stop"
+  },
+  "actions": [
+    {
+      "type": "inject_js",
+      "params": {
+        "code": "var overlay = document.createElement('div'); overlay.id = 'spotify-shortcuts'; overlay.style.cssText = 'display:none;position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);background:rgba(0,0,0,0.95);border:2px solid #1db954;border-radius:16px;padding:32px 40px;z-index:99999;color:#fff;font-family:sans-serif;min-width:400px;'; overlay.innerHTML = '<h2 style=\"color:#1db954;font-size:24px;margin:0 0 20px;text-align:center\">Keyboard Shortcuts</h2><div style=\"display:grid;grid-template-columns:auto 1fr;gap:10px 20px;font-size:17px\"><kbd style=\"color:#1db954\">Space</kbd><span>Play / Pause</span><kbd style=\"color:#1db954\">Shift+N</kbd><span>Next Track</span><kbd style=\"color:#1db954\">Shift+P</kbd><span>Previous Track</span><kbd style=\"color:#1db954\">Shift+Up</kbd><span>Volume Up</span><kbd style=\"color:#1db954\">Shift+Down</kbd><span>Volume Down</span><kbd style=\"color:#1db954\">S</kbd><span>Toggle Shuffle</span><kbd style=\"color:#1db954\">R</kbd><span>Toggle Repeat</span><kbd style=\"color:#1db954\">L</kbd><span>Like / Unlike</span><kbd style=\"color:#1db954\">Ctrl+F</kbd><span>Search</span><kbd style=\"color:#1db954\">/</kbd><span>Focus Search</span></div><p style=\"text-align:center;color:#888;margin-top:16px;font-size:14px\">Press ? to toggle this overlay</p>'; document.body.appendChild(overlay); document.addEventListener('keydown', function(e) { if (e.key === '?') { overlay.style.display = overlay.style.display === 'none' ? 'block' : 'none'; } }); return 'shortcuts-overlay-ready';"
+      }
+    }
+  ]
+}

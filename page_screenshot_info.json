@@ -1,0 +1,49 @@
+{
+  "name": "Page Info Panel",
+  "description": "Shows a floating panel with useful page info: title, URL, links count, images count, video sources",
+  "version": 1,
+  "enabled": true,
+  "trigger": {
+    "type": "url_regex",
+    "value": "^https?://",
+    "event": "manual"
+  },
+  "settings": { "timeout_ms": 10000 },
+  "actions": [
+    {
+      "type": "count_elements",
+      "params": { "selector": "a" },
+      "store_result": "link_count"
+    },
+    {
+      "type": "count_elements",
+      "params": { "selector": "img" },
+      "store_result": "img_count"
+    },
+    {
+      "type": "count_elements",
+      "params": { "selector": "video, iframe[src*='youtube'], iframe[src*='vimeo'], iframe[src*='player']" },
+      "store_result": "video_count"
+    },
+    {
+      "type": "count_elements",
+      "params": { "selector": "iframe" },
+      "store_result": "iframe_count"
+    },
+    {
+      "type": "inject_js",
+      "params": {
+        "code": "return document.title;",
+        "return_result": true
+      },
+      "store_result": "page_title"
+    },
+    {
+      "type": "inject_js",
+      "params": {
+        "code": "var old = document.getElementById('cp-page-info'); if (old) old.remove(); var d = document.createElement('div'); d.id = 'cp-page-info'; d.style.cssText = 'position:fixed;top:20px;right:20px;width:400px;max-height:80vh;overflow-y:auto;background:#161b22;border:2px solid #30363d;border-radius:12px;padding:20px;z-index:99999;color:#c9d1d9;font-family:monospace;font-size:15px;line-height:1.6;box-shadow:0 8px 32px rgba(0,0,0,0.5);'; d.innerHTML = '<div style=\"display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;\"><b style=\"color:#58a6ff;font-size:18px;\">Page Info</b><span onclick=\"this.parentElement.parentElement.remove()\" style=\"cursor:pointer;color:#da3633;font-size:20px;\">✕</span></div>'; d.innerHTML += '<div style=\"border-bottom:1px solid #30363d;padding-bottom:8px;margin-bottom:8px;\"><span style=\"color:#8b949e;\">Title:</span> ' + document.title + '</div>'; d.innerHTML += '<div style=\"word-break:break-all;border-bottom:1px solid #30363d;padding-bottom:8px;margin-bottom:8px;\"><span style=\"color:#8b949e;\">URL:</span> ' + location.href + '</div>'; d.innerHTML += '<div><span style=\"color:#8b949e;\">Links:</span> <span style=\"color:#3fb950;\">' + document.querySelectorAll('a').length + '</span> | <span style=\"color:#8b949e;\">Images:</span> <span style=\"color:#3fb950;\">' + document.querySelectorAll('img').length + '</span> | <span style=\"color:#8b949e;\">Videos:</span> <span style=\"color:#3fb950;\">' + document.querySelectorAll('video').length + '</span> | <span style=\"color:#8b949e;\">Iframes:</span> <span style=\"color:#3fb950;\">' + document.querySelectorAll('iframe').length + '</span></div>'; var vids = document.querySelectorAll('video'); if (vids.length > 0) { d.innerHTML += '<div style=\"margin-top:8px;border-top:1px solid #30363d;padding-top:8px;\"><b style=\"color:#d2a8ff;\">Video Sources:</b></div>'; vids.forEach(function(v,i) { d.innerHTML += '<div style=\"font-size:12px;color:#f0883e;word-break:break-all;\">' + (i+1) + '. ' + (v.src || v.currentSrc || '(blob/no src)') + '</div>'; }); } document.body.appendChild(d); return 'shown';",
+        "return_result": true
+      }
+    }
+  ]
+}
