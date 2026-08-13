@@ -1,5 +1,7 @@
 Found an Android Web Browser app with built in macro functionality and I build a few macros for it. Need to add descriptions of what each macro does in the readme file.
 
+Note: we can use the raw.githubusercontent.com url to add a macro to the app directly so we dont need to copy and passte the entire json code.
+
 <br><br><br>
 
 <u>To DO List:</u><br>
