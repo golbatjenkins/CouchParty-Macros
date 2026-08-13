@@ -1,0 +1,19 @@
+{
+  "name": "Universal Back to Top",
+  "description": "Adds a floating back-to-top button for easy TV navigation with D-pad",
+  "version": 1,
+  "enabled": false,
+  "trigger": {
+    "type": "url_regex",
+    "value": "^https?://",
+    "event": "on_page_stop"
+  },
+  "actions": [
+    {
+      "type": "inject_js",
+      "params": {
+        "code": "if (!document.getElementById('cp-top-btn')) { var btn = document.createElement('button'); btn.id = 'cp-top-btn'; btn.textContent = '\\u2191 Top'; btn.style.cssText = 'position:fixed;bottom:20px;right:20px;z-index:99999;padding:12px 20px;background:#638cff;color:#fff;border:none;border-radius:12px;font-size:16px;font-weight:700;cursor:pointer;box-shadow:0 4px 16px rgba(99,140,255,0.4);opacity:0;transition:opacity 0.3s;'; btn.onclick = function() { window.scrollTo({ top: 0, behavior: 'smooth' }); }; document.body.appendChild(btn); window.addEventListener('scroll', function() { btn.style.opacity = window.scrollY > 300 ? '1' : '0'; }); } return 'done';"
+      }
+    }
+  ]
+}

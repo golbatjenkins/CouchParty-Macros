@@ -1,0 +1,19 @@
+{
+  "name": "Universal Auto Scroll",
+  "description": "Automatically scrolls the page slowly — great for hands-free TV reading",
+  "version": 1,
+  "enabled": false,
+  "trigger": {
+    "type": "url_regex",
+    "value": "^https?://",
+    "event": "on_page_stop"
+  },
+  "actions": [
+    {
+      "type": "inject_js",
+      "params": {
+        "code": "if (!window._cpAutoScroll) { window._cpAutoScroll = true; window._cpScrollSpeed = 1; window._cpScrolling = true; var btn = document.createElement('button'); btn.id = 'cp-scroll-btn'; btn.innerHTML = '&#9654; Auto Scroll'; btn.style.cssText = 'position:fixed;bottom:20px;left:20px;z-index:99999;padding:10px 18px;background:#638cff;color:#fff;border:none;border-radius:12px;font-size:14px;font-weight:700;cursor:pointer;box-shadow:0 4px 16px rgba(99,140,255,0.4);'; btn.onclick = function() { window._cpScrolling = !window._cpScrolling; btn.innerHTML = window._cpScrolling ? '&#9646;&#9646; Pause' : '&#9654; Auto Scroll'; btn.style.background = window._cpScrolling ? '#f87171' : '#638cff'; }; document.body.appendChild(btn); function doScroll() { if (window._cpScrolling) window.scrollBy(0, window._cpScrollSpeed); requestAnimationFrame(doScroll); } doScroll(); btn.innerHTML = '&#9646;&#9646; Pause'; btn.style.background = '#f87171'; } return 'done';"
+      }
+    }
+  ]
+}
