@@ -1,0 +1,17 @@
+{
+  "name": "Spotify Podcast TV Mode",
+  "description": "Enhances podcast browsing and episode lists for TV readability",
+  "version": 1,
+  "enabled": true,
+  "trigger": {
+    "type": "domain",
+    "value": "open.spotify.com",
+    "event": "on_page_stop"
+  },
+  "actions": [
+    {
+      "type": "inject_css",
+      "params": { "css": "[data-testid='episode-container'], [class*='EpisodeListItem'] { min-height: 80px !important; padding: 16px 20px !important; border-bottom: 1px solid rgba(255,255,255,0.06) !important; } [data-testid='episode-container']:hover, [class*='EpisodeListItem']:hover { background: rgba(29,185,84,0.12) !important; border-radius: 8px !important; } [data-testid='episode-container'] h4, [class*='EpisodeListItem'] h4 { font-size: 20px !important; font-weight: 600 !important; } [data-testid='episode-container'] p, [class*='EpisodeListItem'] [class*='description'] { font-size: 16px !important; line-height: 1.6 !important; color: #b3b3b3 !important; } [data-testid='episode-container'] span, [class*='EpisodeListItem'] span { font-size: 15px !important; } [data-testid='show-page'] h1 { font-size: 36px !important; }" }
+    }
+  ]
+}

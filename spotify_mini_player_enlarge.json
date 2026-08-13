@@ -1,0 +1,17 @@
+{
+  "name": "Spotify Mini Player Enlarge",
+  "description": "Makes the bottom now-playing bar taller with larger track info for TV visibility",
+  "version": 1,
+  "enabled": true,
+  "trigger": {
+    "type": "domain",
+    "value": "open.spotify.com",
+    "event": "on_page_stop"
+  },
+  "actions": [
+    {
+      "type": "inject_css",
+      "params": { "css": "footer, [class*='now-playing-bar'], [class*='NowPlayingBar'] { height: 100px !important; min-height: 100px !important; padding: 10px 20px !important; } footer [data-testid='now-playing-widget'] img, [class*='now-playing-bar'] img { width: 72px !important; height: 72px !important; border-radius: 8px !important; } footer [data-testid='context-item-link'], [class*='now-playing-bar'] [data-testid='context-item-link'] { font-size: 18px !important; font-weight: 600 !important; } footer [data-testid='context-item-info-artist'], [class*='now-playing-bar'] [data-testid='context-item-info-artist'] { font-size: 15px !important; } .Root__main-view { margin-bottom: 100px !important; }" }
+    }
+  ]
+}

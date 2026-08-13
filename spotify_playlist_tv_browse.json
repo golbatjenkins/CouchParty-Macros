@@ -1,0 +1,17 @@
+{
+  "name": "Spotify Playlist TV Browser",
+  "description": "Makes playlist tracks larger with better spacing for D-pad navigation on TV",
+  "version": 1,
+  "enabled": true,
+  "trigger": {
+    "type": "domain",
+    "value": "open.spotify.com",
+    "event": "on_page_stop"
+  },
+  "actions": [
+    {
+      "type": "inject_css",
+      "params": { "css": "[data-testid='tracklist-row'] { min-height: 64px !important; padding: 8px 16px !important; border-bottom: 1px solid rgba(255,255,255,0.06) !important; } [data-testid='tracklist-row']:hover, [data-testid='tracklist-row']:focus-within { background: rgba(29,185,84,0.15) !important; outline: 2px solid #1db954 !important; border-radius: 8px !important; } [data-testid='tracklist-row'] span, [data-testid='tracklist-row'] a { font-size: 18px !important; } [data-testid='tracklist-row'] img { width: 52px !important; height: 52px !important; border-radius: 6px !important; } [data-testid='playlist-page'] h1 { font-size: 36px !important; }" }
+    }
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "name": "Spotify Volume Slider Enlarge",
+  "description": "Makes the volume slider wider and easier to control with TV remote",
+  "version": 1,
+  "enabled": true,
+  "trigger": {
+    "type": "domain",
+    "value": "open.spotify.com",
+    "event": "on_page_stop"
+  },
+  "actions": [
+    {
+      "type": "inject_css",
+      "params": { "css": "[class*='volume-bar'], [data-testid='volume-bar'] { width: 160px !important; min-width: 160px !important; } [class*='volume-bar'] [class*='progress-bar'], [data-testid='volume-bar'] [class*='progress-bar'] { height: 8px !important; border-radius: 4px !important; } [class*='volume-bar'] button, [data-testid='volume-bar'] button { transform: scale(1.5) !important; } [class*='volume-bar'] [class*='handle'], [data-testid='volume-bar'] [class*='handle'] { width: 18px !important; height: 18px !important; }" }
+    }
+  ]
+}

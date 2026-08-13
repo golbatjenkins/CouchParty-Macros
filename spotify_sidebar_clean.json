@@ -1,0 +1,17 @@
+{
+  "name": "Spotify Sidebar Clean TV",
+  "description": "Cleans and enlarges the sidebar library navigation for TV remote browsing",
+  "version": 1,
+  "enabled": true,
+  "trigger": {
+    "type": "domain",
+    "value": "open.spotify.com",
+    "event": "on_page_stop"
+  },
+  "actions": [
+    {
+      "type": "inject_css",
+      "params": { "css": "nav [class*='RootlistItem'], [class*='sidebar'] [class*='listItem'] { min-height: 48px !important; padding: 8px 12px !important; border-radius: 6px !important; } nav [class*='RootlistItem']:hover, nav [class*='RootlistItem']:focus, [class*='sidebar'] [class*='listItem']:hover { background: rgba(29,185,84,0.15) !important; outline: 2px solid #1db954 !important; } nav [class*='RootlistItem'] span, [class*='sidebar'] [class*='listItem'] span { font-size: 16px !important; } nav [class*='RootlistItem'] img, [class*='sidebar'] [class*='listItem'] img { width: 44px !important; height: 44px !important; border-radius: 6px !important; } [class*='sidebar'] [class*='search'] input { font-size: 18px !important; padding: 10px 16px !important; }" }
+    }
+  ]
+}

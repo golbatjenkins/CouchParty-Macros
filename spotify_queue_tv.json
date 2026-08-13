@@ -1,0 +1,17 @@
+{
+  "name": "Spotify Queue TV Mode",
+  "description": "Improves the queue panel readability with larger text and track art on TV",
+  "version": 1,
+  "enabled": true,
+  "trigger": {
+    "type": "domain",
+    "value": "open.spotify.com",
+    "event": "on_page_stop"
+  },
+  "actions": [
+    {
+      "type": "inject_css",
+      "params": { "css": "[class*='Queue'] [data-testid='tracklist-row'], [class*='queue'] [data-testid='tracklist-row'] { min-height: 60px !important; padding: 10px 16px !important; } [class*='Queue'] [data-testid='tracklist-row'] img, [class*='queue'] [data-testid='tracklist-row'] img { width: 48px !important; height: 48px !important; border-radius: 6px !important; } [class*='Queue'] span, [class*='queue'] span { font-size: 17px !important; } [class*='Queue'] h2, [class*='queue'] h2 { font-size: 24px !important; margin-bottom: 16px !important; } [class*='Queue'] [data-testid='tracklist-row']:hover, [class*='queue'] [data-testid='tracklist-row']:focus-within { background: rgba(29,185,84,0.12) !important; outline: 2px solid #1db954 !important; border-radius: 8px !important; }" }
+    }
+  ]
+}

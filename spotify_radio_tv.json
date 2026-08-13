@@ -1,0 +1,17 @@
+{
+  "name": "Spotify Radio Station TV",
+  "description": "Enhances Spotify radio/genre station pages with bigger cards and focus states for TV",
+  "version": 1,
+  "enabled": true,
+  "trigger": {
+    "type": "domain",
+    "value": "open.spotify.com",
+    "event": "on_page_stop"
+  },
+  "actions": [
+    {
+      "type": "inject_css",
+      "params": { "css": "[data-testid='genre-page'] [data-testid='card'], [class*='genre'] [class*='Card'] { min-width: 200px !important; min-height: 160px !important; border-radius: 12px !important; } [data-testid='genre-page'] [data-testid='card']:hover, [data-testid='genre-page'] [data-testid='card']:focus-within { transform: scale(1.05) !important; outline: 3px solid #1db954 !important; box-shadow: 0 8px 24px rgba(29,185,84,0.3) !important; } [data-testid='genre-page'] h2 { font-size: 28px !important; } [data-testid='genre-page'] [data-testid='card'] span { font-size: 16px !important; }" }
+    }
+  ]
+}

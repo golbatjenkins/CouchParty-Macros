@@ -1,0 +1,17 @@
+{
+  "name": "Spotify Search TV Mode",
+  "description": "Enlarges search results and genre cards for easier TV browsing",
+  "version": 1,
+  "enabled": true,
+  "trigger": {
+    "type": "domain",
+    "value": "open.spotify.com",
+    "event": "on_page_stop"
+  },
+  "actions": [
+    {
+      "type": "inject_css",
+      "params": { "css": "[data-testid='search-input'] { font-size: 24px !important; padding: 16px 20px !important; height: 56px !important; border-radius: 28px !important; } [data-testid='search-genre-card'], [class*='GenreCard'] { min-height: 140px !important; border-radius: 12px !important; } [data-testid='search-genre-card'] span, [class*='GenreCard'] span { font-size: 20px !important; font-weight: 700 !important; } [data-testid='top-result-card'] { min-height: 200px !important; } [data-testid='top-result-card'] span { font-size: 22px !important; } [class*='SearchResults'] [data-testid='tracklist-row'] { min-height: 60px !important; } [class*='SearchResults'] [data-testid='tracklist-row'] span { font-size: 17px !important; }" }
+    }
+  ]
+}
