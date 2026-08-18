@@ -1,0 +1,21 @@
+{
+  "name": "TV Readability Boost",
+  "description": "Enlarges text and improves readability for TV viewing distance - trigger manually on any page",
+  "version": 1,
+  "enabled": true,
+  "trigger": {
+    "type": "url_regex",
+    "value": "^https?://",
+    "event": "manual"
+  },
+  "actions": [
+    {
+      "type": "inject_css",
+      "params": { "css": "html { font-size: 22px !important; } body { line-height: 1.7 !important; max-width: 1200px !important; margin: 0 auto !important; padding: 20px 40px !important; } p, li, td, th, span, div, a { font-size: inherit !important; line-height: inherit !important; } h1 { font-size: 2.2em !important; } h2 { font-size: 1.8em !important; } h3 { font-size: 1.5em !important; } a { text-decoration: underline !important; } img { max-width: 100% !important; height: auto !important; }" }
+    },
+    {
+      "type": "toast",
+      "params": { "message": "TV readability mode applied" }
+    }
+  ]
+}

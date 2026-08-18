@@ -1,0 +1,19 @@
+{
+  "name": "Universal TV Show Current URL",
+  "description": "Shows the current page URL in a copy-friendly bar at the bottom of the screen",
+  "version": 1,
+  "enabled": false,
+  "trigger": {
+    "type": "url_regex",
+    "value": "^https?://",
+    "event": "on_page_stop"
+  },
+  "actions": [
+    {
+      "type": "inject_js",
+      "params": {
+        "code": "var urlBar = document.createElement('div'); urlBar.style.cssText = 'position:fixed;bottom:0;left:0;right:0;background:rgba(13,17,23,0.95);padding:8px 20px;font-size:14px;font-family:monospace;color:#58a6ff;z-index:99996;border-top:1px solid #30363d;cursor:pointer;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;'; urlBar.textContent = window.location.href; urlBar.addEventListener('click', function() { navigator.clipboard.writeText(window.location.href).then(function() { urlBar.style.color = '#34d399'; urlBar.textContent = 'URL Copied!'; setTimeout(function() { urlBar.style.color = '#58a6ff'; urlBar.textContent = window.location.href; }, 2000); }); }); document.body.appendChild(urlBar); return 'url-bar-added';"
+      }
+    }
+  ]
+}

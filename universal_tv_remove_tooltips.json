@@ -1,0 +1,17 @@
+{
+  "name": "Universal Remove Tooltips",
+  "description": "Removes tooltip popups that clutter the TV screen and are hard to dismiss with remote",
+  "version": 1,
+  "enabled": false,
+  "trigger": {
+    "type": "url_regex",
+    "value": "^https?://",
+    "event": "on_page_stop"
+  },
+  "actions": [
+    {
+      "type": "inject_css",
+      "params": { "css": "[role='tooltip'], .tooltip, [class*='tooltip'], [class*='Tooltip'], [data-tooltip], [data-tippy], .tippy-box, .tippy-content, [class*='popover']:not([class*='modal']), [class*='Popover']:not([class*='Modal']) { display: none !important; visibility: hidden !important; opacity: 0 !important; pointer-events: none !important; } [title] { position: relative !important; } [title]:hover::after, [title]:hover::before { display: none !important; }" }
+    }
+  ]
+}

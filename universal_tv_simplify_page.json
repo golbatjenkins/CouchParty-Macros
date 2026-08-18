@@ -1,0 +1,17 @@
+{
+  "name": "Universal TV Simplify Page",
+  "description": "Strips complex multi-column layouts into a single readable column for TV",
+  "version": 1,
+  "enabled": false,
+  "trigger": {
+    "type": "url_regex",
+    "value": "^https?://",
+    "event": "on_page_stop"
+  },
+  "actions": [
+    {
+      "type": "inject_css",
+      "params": { "css": "aside, [role='complementary'], .sidebar, [class*='sidebar'], [class*='Sidebar'], [class*='rail'], [class*='Rail'] { display: none !important; } main, [role='main'], article, .content, [class*='content'], [class*='Content'] { width: 100% !important; max-width: 1000px !important; margin: 0 auto !important; float: none !important; } .row, [class*='row'], [class*='col-'] { display: block !important; width: 100% !important; float: none !important; } body { overflow-x: hidden !important; }" }
+    }
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "name": "Universal TV Hide Related Content",
+  "description": "Hides related articles, recommended content, and infinite scroll distractions on TV",
+  "version": 1,
+  "enabled": false,
+  "trigger": {
+    "type": "url_regex",
+    "value": "^https?://",
+    "event": "on_page_stop"
+  },
+  "actions": [
+    {
+      "type": "inject_css",
+      "params": { "css": "[class*='related'], [class*='Related'], [class*='recommended'], [class*='Recommended'], [class*='more-stories'], [class*='MoreStories'], [class*='suggested'], [class*='Suggested'], [class*='you-may-like'], [class*='trending'], [class*='Trending'], [class*='popular-posts'], [class*='outbrain'], [class*='taboola'], [class*='Outbrain'], [class*='Taboola'], [id*='outbrain'], [id*='taboola'] { display: none !important; }" }
+    }
+  ]
+}

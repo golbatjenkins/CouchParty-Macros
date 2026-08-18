@@ -1,0 +1,17 @@
+{
+  "name": "Universal TV Section Dividers",
+  "description": "Adds clear visual dividers between page sections for better content separation on TV",
+  "version": 1,
+  "enabled": false,
+  "trigger": {
+    "type": "url_regex",
+    "value": "^https?://",
+    "event": "on_page_stop"
+  },
+  "actions": [
+    {
+      "type": "inject_css",
+      "params": { "css": "section, [role='region'], article + article, main > div + div { border-top: 1px solid rgba(48,54,61,0.8) !important; padding-top: 24px !important; margin-top: 24px !important; } h2, h3 { margin-top: 32px !important; padding-top: 16px !important; border-top: 1px solid rgba(48,54,61,0.4) !important; } article + article { margin-top: 32px !important; }" }
+    }
+  ]
+}

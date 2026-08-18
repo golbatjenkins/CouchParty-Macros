@@ -1,0 +1,17 @@
+{
+  "name": "Universal TV Safe Zone Padding",
+  "description": "Adds overscan-safe padding around page edges so content is not cut off on TV",
+  "version": 1,
+  "enabled": false,
+  "trigger": {
+    "type": "url_regex",
+    "value": "^https?://",
+    "event": "on_page_stop"
+  },
+  "actions": [
+    {
+      "type": "inject_css",
+      "params": { "css": "body { padding: 24px 48px !important; box-sizing: border-box !important; } header, nav, [role='banner'] { margin-left: 24px !important; margin-right: 24px !important; } footer, [role='contentinfo'] { margin-left: 24px !important; margin-right: 24px !important; margin-bottom: 24px !important; } main, [role='main'], article { margin-left: auto !important; margin-right: auto !important; max-width: calc(100% - 96px) !important; }" }
+    }
+  ]
+}
