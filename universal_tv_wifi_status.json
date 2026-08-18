@@ -1,0 +1,19 @@
+{
+  "name": "Universal TV Network Status",
+  "description": "Shows connection status indicator so you know if your TV is still online",
+  "version": 1,
+  "enabled": false,
+  "trigger": {
+    "type": "url_regex",
+    "value": "^https?://",
+    "event": "on_page_stop"
+  },
+  "actions": [
+    {
+      "type": "inject_js",
+      "params": {
+        "code": "var dot = document.createElement('div'); dot.id = 'tv-net-status'; dot.style.cssText = 'position:fixed;top:12px;right:70px;width:12px;height:12px;border-radius:50%;background:#34d399;z-index:99997;box-shadow:0 0 6px rgba(52,211,153,0.5);transition:background 0.3s;'; document.body.appendChild(dot); window.addEventListener('offline', function() { dot.style.background = '#f87171'; dot.style.boxShadow = '0 0 6px rgba(248,113,113,0.5)'; }); window.addEventListener('online', function() { dot.style.background = '#34d399'; dot.style.boxShadow = '0 0 6px rgba(52,211,153,0.5)'; }); if (!navigator.onLine) { dot.style.background = '#f87171'; dot.style.boxShadow = '0 0 6px rgba(248,113,113,0.5)'; } return 'network-status-active';"
+      }
+    }
+  ]
+}

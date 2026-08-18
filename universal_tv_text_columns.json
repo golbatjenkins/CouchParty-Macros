@@ -1,0 +1,17 @@
+{
+  "name": "Universal TV Text Two Columns",
+  "description": "Splits long article text into two columns like a newspaper for widescreen TV",
+  "version": 1,
+  "enabled": false,
+  "trigger": {
+    "type": "url_regex",
+    "value": "^https?://",
+    "event": "on_page_stop"
+  },
+  "actions": [
+    {
+      "type": "inject_css",
+      "params": { "css": "article, [role='article'], .post-content, .article-body, .entry-content, .story-body { column-count: 2 !important; column-gap: 40px !important; column-rule: 1px solid rgba(48,54,61,0.5) !important; } article h1, article h2, [role='article'] h1, [role='article'] h2, .article-body h1, .article-body h2 { column-span: all !important; } article img, [role='article'] img { max-width: 100% !important; }" }
+    }
+  ]
+}

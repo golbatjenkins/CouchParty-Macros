@@ -1,0 +1,19 @@
+{
+  "name": "Universal TV Video Speed Control",
+  "description": "Adds on-screen playback speed buttons for HTML5 videos on TV",
+  "version": 1,
+  "enabled": false,
+  "trigger": {
+    "type": "url_regex",
+    "value": "^https?://",
+    "event": "on_page_stop"
+  },
+  "actions": [
+    {
+      "type": "inject_js",
+      "params": {
+        "code": "var video = document.querySelector('video'); if (video) { var panel = document.createElement('div'); panel.style.cssText = 'position:fixed;bottom:80px;left:50%;transform:translateX(-50%);z-index:99999;display:flex;gap:8px;background:rgba(13,17,23,0.92);padding:8px 12px;border-radius:10px;border:1px solid #30363d;'; var speeds = [0.5, 0.75, 1, 1.25, 1.5, 2]; speeds.forEach(function(spd) { var btn = document.createElement('button'); btn.textContent = spd + 'x'; btn.style.cssText = 'padding:6px 12px;border-radius:6px;background:' + (spd === 1 ? '#238636' : '#21262d') + ';color:#fff;border:none;font-size:14px;cursor:pointer;'; btn.addEventListener('click', function() { video.playbackRate = spd; panel.querySelectorAll('button').forEach(function(b) { b.style.background = '#21262d'; }); btn.style.background = '#238636'; }); panel.appendChild(btn); }); document.body.appendChild(panel); } return video ? 'speed-controls-added' : 'no-video-found';"
+      }
+    }
+  ]
+}

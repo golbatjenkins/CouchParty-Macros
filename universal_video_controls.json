@@ -1,0 +1,19 @@
+{
+  "name": "Universal Video Controls Reveal",
+  "description": "Forces native browser video controls to appear on all video elements",
+  "version": 1,
+  "enabled": false,
+  "trigger": {
+    "type": "url_regex",
+    "value": "^https?://",
+    "event": "on_page_stop"
+  },
+  "actions": [
+    {
+      "type": "inject_js",
+      "params": {
+        "code": "var videos = document.querySelectorAll('video'); videos.forEach(function(v) { v.controls = true; v.style.zIndex = '9999'; v.style.position = 'relative'; }); return videos.length + ' videos found';"
+      }
+    }
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "name": "Universal TV Tab-Index Fix",
+  "description": "Adds tabindex to interactive elements that lack it so D-pad can reach them",
+  "version": 1,
+  "enabled": false,
+  "trigger": {
+    "type": "url_regex",
+    "value": "^https?://",
+    "event": "on_page_stop"
+  },
+  "actions": [
+    {
+      "type": "inject_js",
+      "params": {
+        "code": "var fixed = 0; document.querySelectorAll('[role=\"button\"], [role=\"link\"], [role=\"tab\"], [role=\"menuitem\"], [role=\"option\"], [onclick], [class*=\"clickable\"], [class*=\"Clickable\"]').forEach(function(el) { if (!el.hasAttribute('tabindex') && el.tagName !== 'A' && el.tagName !== 'BUTTON' && el.tagName !== 'INPUT') { el.setAttribute('tabindex', '0'); fixed++; } }); document.querySelectorAll('[class*=\"card\"], [class*=\"Card\"], [class*=\"tile\"], [class*=\"Tile\"]').forEach(function(el) { var link = el.querySelector('a'); if (link && !el.hasAttribute('tabindex')) { el.setAttribute('tabindex', '0'); el.addEventListener('keydown', function(e) { if (e.key === 'Enter') link.click(); }); fixed++; } }); return 'fixed-' + fixed + '-elements';"
+      }
+    }
+  ]
+}

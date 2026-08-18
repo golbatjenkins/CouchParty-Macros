@@ -1,0 +1,19 @@
+{
+  "name": "Universal TV Video Picture-in-Picture",
+  "description": "Makes videos float in a corner so you can keep browsing while watching on TV",
+  "version": 1,
+  "enabled": false,
+  "trigger": {
+    "type": "url_regex",
+    "value": "^https?://",
+    "event": "on_page_stop"
+  },
+  "actions": [
+    {
+      "type": "inject_js",
+      "params": {
+        "code": "document.querySelectorAll('video').forEach(function(vid) { var observer = new IntersectionObserver(function(entries) { entries.forEach(function(entry) { if (!entry.isIntersecting && !vid.paused) { vid.style.cssText = 'position:fixed !important;bottom:20px;right:20px;width:360px;height:auto;z-index:99999;border-radius:12px;box-shadow:0 8px 32px rgba(0,0,0,0.5);border:2px solid #30363d;'; } else { vid.style.cssText = ''; } }); }, { threshold: 0.3 }); observer.observe(vid); }); return 'pip-mode-active';"
+      }
+    }
+  ]
+}

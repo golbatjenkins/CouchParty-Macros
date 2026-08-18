@@ -1,0 +1,19 @@
+{
+  "name": "Universal Word Count & Read Time",
+  "description": "Shows estimated word count and reading time for any article",
+  "version": 1,
+  "enabled": false,
+  "trigger": {
+    "type": "url_regex",
+    "value": "^https?://",
+    "event": "on_page_stop"
+  },
+  "actions": [
+    {
+      "type": "inject_js",
+      "params": {
+        "code": "if (!document.getElementById('cp-wordcount')) { var main = document.querySelector('article, [role=\"main\"], main, .article-body, .post-content, .entry-content') || document.body; var text = main.innerText || ''; var words = text.split(/\\s+/).filter(function(w) { return w.length > 0; }).length; var mins = Math.ceil(words / 230); var bar = document.createElement('div'); bar.id = 'cp-wordcount'; bar.innerHTML = words.toLocaleString() + ' words &middot; ~' + mins + ' min read'; bar.style.cssText = 'position:fixed;top:12px;right:12px;z-index:99999;padding:8px 16px;background:rgba(99,140,255,0.15);border:1px solid rgba(99,140,255,0.25);border-radius:100px;font-size:13px;font-weight:600;color:#638cff;backdrop-filter:blur(12px);'; document.body.appendChild(bar); setTimeout(function() { bar.style.opacity = '0'; bar.style.transition = 'opacity 1s'; }, 5000); } return 'done';"
+      }
+    }
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "name": "Universal TV Table Horizontal Scroll",
+  "description": "Makes wide tables horizontally scrollable instead of breaking TV layout",
+  "version": 1,
+  "enabled": false,
+  "trigger": {
+    "type": "url_regex",
+    "value": "^https?://",
+    "event": "on_page_stop"
+  },
+  "actions": [
+    {
+      "type": "inject_js",
+      "params": {
+        "code": "document.querySelectorAll('table').forEach(function(table) { if (table.offsetWidth > window.innerWidth * 0.9) { var wrapper = document.createElement('div'); wrapper.style.cssText = 'overflow-x:auto;max-width:100%;border:1px solid #30363d;border-radius:8px;margin:16px 0;'; table.parentNode.insertBefore(wrapper, table); wrapper.appendChild(table); } table.style.fontSize = '16px'; table.style.lineHeight = '1.6'; var cells = table.querySelectorAll('th, td'); cells.forEach(function(c) { c.style.padding = '12px 16px'; }); }); return 'tables-fixed';"
+      }
+    }
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "name": "Universal TV Two Column Layout",
+  "description": "Forces multi-column layouts into a simple two-column grid suited for widescreen TV",
+  "version": 1,
+  "enabled": false,
+  "trigger": {
+    "type": "url_regex",
+    "value": "^https?://",
+    "event": "on_page_stop"
+  },
+  "actions": [
+    {
+      "type": "inject_js",
+      "params": {
+        "code": "document.querySelectorAll('[class*=\"grid\"], [class*=\"Grid\"], [style*=\"grid\"]').forEach(function(el) { var style = window.getComputedStyle(el); if (style.display === 'grid' || style.display === 'inline-grid') { el.style.gridTemplateColumns = 'repeat(2, 1fr)'; el.style.gap = '20px'; } }); document.querySelectorAll('[class*=\"flex-wrap\"], [class*=\"FlexWrap\"]').forEach(function(el) { var children = el.children; if (children.length > 3) { el.style.display = 'grid'; el.style.gridTemplateColumns = 'repeat(2, 1fr)'; el.style.gap = '16px'; } }); return 'two-col-applied';"
+      }
+    }
+  ]
+}

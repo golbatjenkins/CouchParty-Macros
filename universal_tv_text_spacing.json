@@ -1,0 +1,17 @@
+{
+  "name": "Universal TV Text Spacing",
+  "description": "Increases letter and word spacing for better readability at TV viewing distance",
+  "version": 1,
+  "enabled": false,
+  "trigger": {
+    "type": "url_regex",
+    "value": "^https?://",
+    "event": "on_page_stop"
+  },
+  "actions": [
+    {
+      "type": "inject_css",
+      "params": { "css": "p, li, td, th, span, a, div, label, dd, dt, blockquote { letter-spacing: 0.03em !important; word-spacing: 0.08em !important; } h1, h2, h3, h4, h5, h6 { letter-spacing: 0.01em !important; word-spacing: 0.05em !important; } article p, main p, .content p { line-height: 1.8 !important; margin-bottom: 1.2em !important; }" }
+    }
+  ]
+}

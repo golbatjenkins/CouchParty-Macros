@@ -1,0 +1,19 @@
+{
+  "name": "Universal TV Click-to-Zoom Images",
+  "description": "Click any image to view it fullscreen on TV, click again to close",
+  "version": 1,
+  "enabled": false,
+  "trigger": {
+    "type": "url_regex",
+    "value": "^https?://",
+    "event": "on_page_stop"
+  },
+  "actions": [
+    {
+      "type": "inject_js",
+      "params": {
+        "code": "var overlay = document.createElement('div'); overlay.id = 'tv-img-overlay'; overlay.style.cssText = 'display:none;position:fixed;top:0;left:0;width:100vw;height:100vh;background:rgba(0,0,0,0.92);z-index:999999;justify-content:center;align-items:center;cursor:pointer;'; overlay.addEventListener('click', function() { overlay.style.display = 'none'; }); var zoomImg = document.createElement('img'); zoomImg.style.cssText = 'max-width:90vw;max-height:90vh;object-fit:contain;border-radius:8px;box-shadow:0 8px 32px rgba(0,0,0,0.5);'; overlay.appendChild(zoomImg); document.body.appendChild(overlay); document.querySelectorAll('img').forEach(function(img) { if (img.naturalWidth > 100 && img.naturalHeight > 100) { img.style.cursor = 'zoom-in'; img.addEventListener('click', function(e) { e.preventDefault(); e.stopPropagation(); zoomImg.src = this.src; overlay.style.display = 'flex'; }); } }); return 'image-zoom-ready';"
+      }
+    }
+  ]
+}
