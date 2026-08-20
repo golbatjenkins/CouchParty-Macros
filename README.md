@@ -2,7 +2,7 @@ Found an Android Web Browser app with built in macro functionality and I build a
 
 Note: we can use the raw.githubusercontent.com url to add a macro to the app directly so we dont need to copy and passte the entire json code.
 
-[If you would  like to ssubmit a macro to be added to this repository, here is the form to do so:] (https://forms.gle/Qnae7mQ5heGjEiF8A)
+[If you would  like to ssubmit a macro to be added to this repository, here is the form to do so](https://forms.gle/Qnae7mQ5heGjEiF8A)
 
 <br><br><br>
 
