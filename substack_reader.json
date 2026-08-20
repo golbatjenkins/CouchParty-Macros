@@ -1,0 +1,23 @@
+{
+  "name": "Substack TV Reader",
+  "description": "Clean newsletter reading on Substack with dark mode for TV",
+  "version": 1,
+  "enabled": true,
+  "trigger": {
+    "type": "url_regex",
+    "value": "substack\\.com|substackcdn\\.com",
+    "event": "on_page_stop"
+  },
+  "actions": [
+    {
+      "type": "inject_css",
+      "params": { "css": "body { background: #0d1117 !important; color: #c9d1d9 !important; } [class*='paywall'], [class*='subscribe-widget'], [class*='subscription-widget'], [class*='footer-wrap'], .modal-overlay { display: none !important; } .body p, .post-content p { font-size: 22px !important; line-height: 1.8 !important; color: #c9d1d9 !important; overflow: visible !important; max-height: none !important; } h1 { font-size: 34px !important; color: #58a6ff !important; line-height: 1.3 !important; } h2 { color: #a47cff !important; } body, html { overflow: auto !important; position: static !important; }" }
+    },
+    {
+      "type": "inject_js",
+      "params": {
+        "code": "document.querySelectorAll('[class*=\"paywall\"], .modal-overlay, [class*=\"subscribe-widget\"]').forEach(function(el) { el.remove(); }); document.body.style.overflow = 'auto'; return 'done';"
+      }
+    }
+  ]
+}

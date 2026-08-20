@@ -1,0 +1,17 @@
+{
+  "name": "TechCrunch Reader",
+  "description": "Clean article reading on TechCrunch with dark mode and ad removal",
+  "version": 1,
+  "enabled": true,
+  "trigger": {
+    "type": "domain",
+    "value": "techcrunch.com",
+    "event": "on_page_stop"
+  },
+  "actions": [
+    {
+      "type": "inject_css",
+      "params": { "css": "body { background: #0d1117 !important; color: #c9d1d9 !important; } .ad, [class*='marfeel'], [class*='piano'], [class*='newsletter'], .wp-block-tc-ads-ad-slot, .article__sidebar { display: none !important; } .article-content p, .entry-content p { font-size: 22px !important; line-height: 1.8 !important; color: #c9d1d9 !important; } h1 { font-size: 34px !important; color: #58a6ff !important; line-height: 1.3 !important; } .article-content, .entry-content { max-width: 900px !important; margin: 0 auto !important; padding: 20px 40px !important; }" }
+    }
+  ]
+}

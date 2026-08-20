@@ -1,0 +1,17 @@
+{
+  "name": "TMZ TV Reader",
+  "description": "Clean celebrity news on TMZ with dark mode for TV",
+  "version": 1,
+  "enabled": true,
+  "trigger": {
+    "type": "domain",
+    "value": "tmz.com",
+    "event": "on_page_stop"
+  },
+  "actions": [
+    {
+      "type": "inject_css",
+      "params": { "css": "body { background: #0d1117 !important; color: #c9d1d9 !important; } .ad, [class*='ad-'], [class*='promo'], [class*='newsletter'] { display: none !important; } .article-content p { font-size: 22px !important; line-height: 1.8 !important; color: #c9d1d9 !important; } h1 { font-size: 32px !important; color: #58a6ff !important; } .article-content { max-width: 900px !important; margin: 0 auto !important; padding: 20px 40px !important; }" }
+    }
+  ]
+}

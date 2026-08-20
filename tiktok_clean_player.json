@@ -1,0 +1,28 @@
+{
+  "name": "TikTok TV Clean Player",
+  "description": "Removes login walls and clutter from TikTok for clean video viewing on TV",
+  "version": 1,
+  "enabled": true,
+  "trigger": {
+    "type": "domain",
+    "value": "tiktok.com",
+    "event": "on_page_stop"
+  },
+  "settings": { "timeout_ms": 15000 },
+  "actions": [
+    {
+      "type": "wait",
+      "params": { "ms": 2000 }
+    },
+    {
+      "type": "inject_css",
+      "params": { "css": "[class*='DivLoginModal'], [class*='LoginModal'], [id*='login-modal'], [class*='BottomBanner'], [data-e2e='download-app-banner'], [class*='DivBannerWrapper'] { display: none !important; } body, html { overflow: auto !important; position: static !important; } [class*='DivVideoWrapper'] video { max-height: 90vh !important; } [class*='DivCommentContainer'], [class*='DivSideActionBar'] { font-size: 16px !important; } [class*='DivDescription'] { font-size: 18px !important; }" }
+    },
+    {
+      "type": "inject_js",
+      "params": {
+        "code": "document.querySelectorAll('[class*=\"Modal\"], [class*=\"modal\"]').forEach(function(el) { var t = el.textContent; if (t.includes('Log in') || t.includes('Sign up') || t.includes('download')) el.remove(); }); return 'done';"
+      }
+    }
+  ]
+}

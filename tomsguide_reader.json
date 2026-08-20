@@ -1,0 +1,17 @@
+{
+  "name": "Tom's Guide Reader",
+  "description": "Clean tech reviews and guides on Tom's Guide for TV",
+  "version": 1,
+  "enabled": true,
+  "trigger": {
+    "type": "url_regex",
+    "value": "tomsguide\\.com|tomshardware\\.com",
+    "event": "on_page_stop"
+  },
+  "actions": [
+    {
+      "type": "inject_css",
+      "params": { "css": "body { background: #0d1117 !important; color: #c9d1d9 !important; } .ad, [class*='ad-'], .sidebar, [class*='newsletter'], [class*='hawk-'], [class*='van_taboola'] { display: none !important; } .article-body p { font-size: 22px !important; line-height: 1.8 !important; color: #c9d1d9 !important; } h1 { font-size: 34px !important; color: #58a6ff !important; } h2 { color: #a47cff !important; } .article-body { max-width: 900px !important; margin: 0 auto !important; padding: 20px 40px !important; }" }
+    }
+  ]
+}

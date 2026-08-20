@@ -1,0 +1,22 @@
+{
+  "name": "Translate Page (Google)",
+  "description": "Opens the current page through Google Translate for automatic translation to English",
+  "version": 1,
+  "enabled": true,
+  "trigger": {
+    "type": "url_regex",
+    "value": "^https?://",
+    "event": "manual"
+  },
+  "actions": [
+    {
+      "type": "url_encode",
+      "params": { "value": "${__current_url}" },
+      "store_result": "encoded_url"
+    },
+    {
+      "type": "navigate",
+      "params": { "url": "https://translate.google.com/translate?sl=auto&tl=en&u=${encoded_url}" }
+    }
+  ]
+}
